@@ -1,0 +1,98 @@
+-- Objects
+local plr = game:GetService("Players").LocalPlayer
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local TrainKi = Instance.new("TextButton")
+local TrainAg = Instance.new("TextButton")
+local TrainAt = Instance.new("TextButton")
+local TrainDe = Instance.new("TextButton")
+
+-- Properties
+
+ScreenGui.Parent = plr.PlayerGui
+ScreenGui.ResetOnSpawn = false
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.new(0, 0, 0)
+Frame.Draggable = true
+Frame.Selectable = true
+Frame.Position = UDim2.new(0.338909566, 0, 0.227777779, 0)
+Frame.Size = UDim2.new(0, 260, 0, 190)
+Frame.Active = true
+
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.new(2, 2, 2)
+TextLabel.Size = UDim2.new(0, 260, 0, 37)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.FontSize = Enum.FontSize.Size24
+TextLabel.Text = "Infinity Heroes GUI"
+TextLabel.TextColor3 = Color3.new(0, 0, 0)
+TextLabel.TextSize = 20
+
+TrainKi.Name = "Press To Train Ki"
+TrainKi.Parent = Frame
+TrainKi.BackgroundColor3 = Color3.new(0.831373, 0.831373, 0.831373)
+TrainKi.Position = UDim2.new(0.0384615399, 0, 0.26696834, 0)
+TrainKi.Size = UDim2.new(0, 110, 0, 41)
+TrainKi.Font = Enum.Font.SourceSans
+TrainKi.FontSize = Enum.FontSize.Size14
+TrainKi.Text = "Press To Train Ki"
+TrainKi.TextSize = 14
+TrainKi.MouseButton1Click:connect(function()
+for i=1, 2000 do --Increase or Decrease
+spawn(function()
+game.ReplicatedStorage.Remotes.Training.Blast:InvokeServer({Energy = {Value = 999999999999}}, game.Players.LocalPlayer.Stats, game.Players.LocalPlayer.Character.HumanoidRootPart, game.Players.LocalPlayer.Character.RightHand, game.Players.LocalPlayer.Character)
+end)
+end
+end)
+TrainAg.Name = "Max Agility"
+TrainAg.Parent = Frame
+TrainAg.BackgroundColor3 = Color3.new(0.831373, 0.831373, 0.831373)
+TrainAg.Position = UDim2.new(0.523076952, 0, 0.26696834, 0)
+TrainAg.Size = UDim2.new(0, 110, 0, 41)
+TrainAg.Font = Enum.Font.SourceSans
+TrainAg.FontSize = Enum.FontSize.Size14
+TrainAg.Text = "Max Agility"
+TrainAg.TextSize = 14
+TrainAg.MouseButton1Click:connect(function()
+for i=1, 10000 do --Increase or Decrease
+game.ReplicatedStorage.Remotes.Training.Agility:FireServer(game.Players.LocalPlayer.Stats)
+end
+end)
+
+TrainAt.Name = "Afk Attack to train attack"
+TrainAt.Parent = Frame
+TrainAt.BackgroundColor3 = Color3.new(0.831373, 0.831373, 0.831373)
+TrainAt.Position = UDim2.new(0.038461566, 0, 0.542986453, 0)
+TrainAt.Size = UDim2.new(0, 110, 0, 41)
+TrainAt.Font = Enum.Font.SourceSans
+TrainAt.FontSize = Enum.FontSize.Size14
+TrainAt.Text = "Afk Attack to train attack"
+TrainAt.TextSize = 14
+TrainAt.MouseButton1Click:connect(function()
+for i=1, 3000 do --Increase or Decrease
+spawn(function()
+  wait(0.1)
+game.ReplicatedStorage.Remotes.Training.Combat:InvokeServer(game.Players.LocalPlayer.Stats, {Humanoid = game.Players.LocalPlayer.Character.Humanoid})
+end)
+end
+end)
+
+
+TrainDe.Name = "Afk Training Def"
+TrainDe.Parent = Frame
+TrainDe.BackgroundColor3 = Color3.new(0.831373, 0.831373, 0.831373)
+TrainDe.Position = UDim2.new(0.523076952, 0, 0.542986453, 0)
+TrainDe.Size = UDim2.new(0, 110, 0, 41)
+TrainDe.Font = Enum.Font.SourceSans
+TrainDe.FontSize = Enum.FontSize.Size14
+TrainDe.Text = "Afk Training Def"
+TrainDe.TextSize = 14
+TrainDe.MouseButton1Click:connect(function()
+for i=1, 5000 do
+spawn(function()
+game.ReplicatedStorage.Remotes.Training.Defense:InvokeServer(plr.Stats, plr.Status, plr.Character.Humanoid, plr.Character.RightHand)
+end)
+end
+end)
