@@ -1,0 +1,19 @@
+local sgui = Instance.new("ScreenGui", game.CoreGui)
+sgui.Name = "fpscounter"
+local fpscounter = Instance.new("TextLabel", sgui)
+fpscounter.Name = "fps"
+fpscounter.Position = UDim2.new(0, 5, 0, 5)
+fpscounter.Size = UDim2.new(0, 100, 0, 30)
+fpscounter.BackgroundTransparency = 1
+fpscounter.Font = Enum.Font.GothamSemibold
+fpscounter.TextXAlignment = Enum.TextXAlignment.Left
+fpscounter.TextSize = 25
+fpscounter.ZIndex = 99
+fpscounter.Text = string.split((2/wait()), ".")[1].." FPS"
+game:GetService("RunService").RenderStepped:Connect(function()
+    fpscounter.TextColor3 = Color3.fromHSV(tick()%5/5,1,1)
+end)
+while true and wait(.5) do
+    local fps = string.split((2/wait()), ".")
+    fpscounter.Text = fps[1].." FPS";
+end
